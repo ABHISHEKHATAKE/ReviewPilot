@@ -1,0 +1,79 @@
+[
+  {
+    "id": "sql-fstring",
+    "language": "python",
+    "code": "def get_user(user_id):\n    query = f\"SELECT * FROM users WHERE id = {user_id}\"\n    return db.execute(query)\n",
+    "expected": [
+      {
+        "category": "SECURITY",
+        "severity": "HIGH",
+        "line": 2,
+        "title": "SQL injection"
+      }
+    ]
+  },
+  {
+    "id": "dynamic-eval",
+    "language": "python",
+    "code": "def parse_user_value(value):\n    return eval(value)\n",
+    "expected": [
+      {
+        "category": "SECURITY",
+        "severity": "HIGH",
+        "line": 2,
+        "title": "Unsafe dynamic evaluation"
+      }
+    ]
+  },
+  {
+    "id": "command-shell",
+    "language": "python",
+    "code": "import subprocess\n\ndef list_files(user_input):\n    subprocess.run(user_input, shell=True)\n",
+    "expected": [
+      {
+        "category": "SECURITY",
+        "severity": "HIGH",
+        "line": 4,
+        "title": "Command injection"
+      }
+    ]
+  },
+  {
+    "id": "constant-division-by-zero",
+    "language": "python",
+    "code": "def average(total):\n    return total / 0\n",
+    "expected": [
+      {
+        "category": "BUG",
+        "severity": "MEDIUM",
+        "line": 2,
+        "title": "Division by zero"
+      }
+    ]
+  },
+  {
+    "id": "nested-duplicate-scan",
+    "language": "python",
+    "code": "def contains_duplicate(values):\n    for i, value in enumerate(values):\n        for other in values[i + 1:]:\n            if value == other:\n                return True\n    return False\n",
+    "expected": [
+      {
+        "category": "PERFORMANCE",
+        "severity": "MEDIUM",
+        "line": 3,
+        "title": "Quadratic nested scan"
+      }
+    ]
+  },
+  {
+    "id": "safe-parameterized-query",
+    "language": "python",
+    "code": "def get_user(connection, user_id):\n    return connection.execute(\"SELECT * FROM users WHERE id = ?\", (user_id,))\n",
+    "expected": []
+  },
+  {
+    "id": "simple-correct-function",
+    "language": "python",
+    "code": "def add(left, right):\n    return left + right\n",
+    "expected": []
+  }
+]

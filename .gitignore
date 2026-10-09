@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.env.*
+!.env.example
+.env.*
+!.env.example
+.pytest_cache/
+.mypy_cache/
+*.db
+*.sqlite3
+node_modules/
+frontend/dist/
+.coverage
+.pytest_cache/
+.mypy_cache/
